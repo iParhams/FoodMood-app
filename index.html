@@ -1,4 +1,3 @@
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500&display=swap');
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -159,84 +158,84 @@ const moods = {
     ai: 'تشخیص دادم خسته هستی. رستوران‌هایی با غذای گرم و آرامش‌بخش، نزدیک به تو، پیدا کردم.',
     cartNote: 'غذاهای گرم و آرامش‌بخش برای وقتی که خسته‌ای',
     restaurants: [
-      { name: 'سوپ‌خانه ستاره', dist: '۳ دقیقه', rate: '۴.۷', tag: 'بهترین انتخاب', reason: 'سوپ گرم و آبگوشت — بهترین برای خستگی', items: ['سوپ جو','آبگوشت','دمنوش'], best: true, price: 120000 },
-      { name: 'کافه آرام', dist: '۷ دقیقه', rate: '۴.۴', tag: '', reason: '', items: ['کاپوچینو','ساندویچ سبک','کیک'], best: false, price: 85000 },
-      { name: 'خانه‌پلو', dist: '۱۰ دقیقه', rate: '۴.۲', tag: '', reason: '', items: ['قورمه سبزی','ماست موسیر'], best: false, price: 95000 }
+      { name: 'سوپ‌خانه ستاره', dist: '۳ دقیقه', rate: '۴.۷', tag: 'بهترین انتخاب', reason: 'سوپ گرم و آبگوشت — بهترین برای خستگی', items: ['سوپ جو','آبگوشت','دمنوش'], best: true, price: 200000 },
+      { name: 'کافه آرام', dist: '۷ دقیقه', rate: '۴.۴', tag: '', reason: '', items: ['کاپوچینو','ساندویچ سبک','کیک'], best: false, price: 142000 },
+      { name: 'خانه‌پلو', dist: '۱۰ دقیقه', rate: '۴.۲', tag: '', reason: '', items: ['قورمه سبزی','ماست موسیر'], best: false, price: 159000 }
     ],
     cart: [
-      { name: 'سوپ جو', from: 'سوپ‌خانه ستاره', price: 55000, qty: 1 },
-      { name: 'دمنوش آرامش', from: 'سوپ‌خانه ستاره', price: 35000, qty: 1 },
-      { name: 'نان تازه', from: 'سوپ‌خانه ستاره', price: 15000, qty: 2 }
+      { name: 'سوپ جو', from: 'سوپ‌خانه ستاره', price: 92000, qty: 1 },
+      { name: 'دمنوش آرامش', from: 'سوپ‌خانه ستاره', price: 58000, qty: 1 },
+      { name: 'نان تازه', from: 'سوپ‌خانه ستاره', price: 25000, qty: 2 }
     ]
   },
   'استرس زیاد': {
     ai: 'استرس داری — غذاهایی که سروتونین بالا می‌برن و فضای آروم رو پیدا کردم.',
     cartNote: 'ترکیب شکلات تلخ + کربوهیدرات برای کاهش استرس',
     restaurants: [
-      { name: 'کافه مدیتیشن', dist: '۵ دقیقه', rate: '۴.۸', tag: 'بهترین انتخاب', reason: 'فضای آروم + شکلات داغ — ضد استرس', items: ['شکلات داغ','براونی','سالاد'], best: true, price: 110000 },
-      { name: 'پاستا رستو', dist: '۸ دقیقه', rate: '۴.۳', tag: '', reason: '', items: ['پاستا کاربونارا','تیراموسو'], best: false, price: 130000 },
-      { name: 'گیاهی سبز', dist: '۶ دقیقه', rate: '۴.۵', tag: '', reason: '', items: ['باولی آووکادو','آب انار'], best: false, price: 95000 }
+      { name: 'کافه مدیتیشن', dist: '۵ دقیقه', rate: '۴.۸', tag: 'بهترین انتخاب', reason: 'فضای آروم + شکلات داغ — ضد استرس', items: ['شکلات داغ','براونی','سالاد'], best: true, price: 184000 },
+      { name: 'پاستا رستو', dist: '۸ دقیقه', rate: '۴.۳', tag: '', reason: '', items: ['پاستا کاربونارا','تیراموسو'], best: false, price: 217000 },
+      { name: 'گیاهی سبز', dist: '۶ دقیقه', rate: '۴.۵', tag: '', reason: '', items: ['باولی آووکادو','آب انار'], best: false, price: 159000 }
     ],
     cart: [
-      { name: 'شکلات داغ', from: 'کافه مدیتیشن', price: 45000, qty: 1 },
-      { name: 'براونی', from: 'کافه مدیتیشن', price: 38000, qty: 1 },
-      { name: 'سالاد سزار', from: 'کافه مدیتیشن', price: 65000, qty: 1 }
+      { name: 'شکلات داغ', from: 'کافه مدیتیشن', price: 75000, qty: 1 },
+      { name: 'براونی', from: 'کافه مدیتیشن', price: 63000, qty: 1 },
+      { name: 'سالاد سزار', from: 'کافه مدیتیشن', price: 109000, qty: 1 }
     ]
   },
   'شاد و پرانرژی': {
     ai: 'انرژیت بالاست! رستوران‌های باکیفیت و غذای جدید و هیجان‌انگیز پیدا کردم.',
     cartNote: 'غذاهای ماجراجویانه برای یه مود عالی',
     restaurants: [
-      { name: 'فیوژن تهران', dist: '۶ دقیقه', rate: '۴.۹', tag: 'بهترین انتخاب', reason: 'منوی خلاقانه — ایده‌آل وقتی خوشحالی', items: ['رول کره‌ای','پیتزا فیوژن','اسموتی'], best: true, price: 180000 },
-      { name: 'برگر آرتیزان', dist: '۴ دقیقه', rate: '۴.۶', tag: '', reason: '', items: ['برگر ترافل','سیب‌زمینی'], best: false, price: 145000 },
-      { name: 'سوشی بار', dist: '۱۲ دقیقه', rate: '۴.۵', tag: '', reason: '', items: ['رول ساکورا','میسو'], best: false, price: 210000 }
+      { name: 'فیوژن تهران', dist: '۶ دقیقه', rate: '۴.۹', tag: 'بهترین انتخاب', reason: 'منوی خلاقانه — ایده‌آل وقتی خوشحالی', items: ['رول کره‌ای','پیتزا فیوژن','اسموتی'], best: true, price: 301000 },
+      { name: 'برگر آرتیزان', dist: '۴ دقیقه', rate: '۴.۶', tag: '', reason: '', items: ['برگر ترافل','سیب‌زمینی'], best: false, price: 242000 },
+      { name: 'سوشی بار', dist: '۱۲ دقیقه', rate: '۴.۵', tag: '', reason: '', items: ['رول ساکورا','میسو'], best: false, price: 351000 }
     ],
     cart: [
-      { name: 'رول کره‌ای اسپایسی', from: 'فیوژن تهران', price: 95000, qty: 1 },
-      { name: 'اسموتی انبه', from: 'فیوژن تهران', price: 55000, qty: 1 },
-      { name: 'دسر شکلاتی', from: 'فیوژن تهران', price: 48000, qty: 1 }
+      { name: 'رول کره‌ای اسپایسی', from: 'فیوژن تهران', price: 159000, qty: 1 },
+      { name: 'اسموتی انبه', from: 'فیوژن تهران', price: 92000, qty: 1 },
+      { name: 'دسر شکلاتی', from: 'فیوژن تهران', price: 80000, qty: 1 }
     ]
   },
   'گرسنگی شدید': {
     ai: 'گرسنگی شدید تشخیص داده شد! سریع‌ترین رستوران‌ها با بیشترین حجم غذا.',
     cartNote: 'پرحجم‌ترین انتخاب‌ها — سریع‌ترین تحویل',
     restaurants: [
-      { name: 'کباب‌سرای پدر', dist: '۲ دقیقه', rate: '۴.۶', tag: 'بهترین انتخاب', reason: 'سریع‌ترین + پرحجم‌ترین — دقیقاً بدردت می‌خوره', items: ['کباب کوبیده','جوجه','برنج زعفرانی'], best: true, price: 210000 },
-      { name: 'پیتزا اکسپرس', dist: '۳ دقیقه', rate: '۴.۲', tag: '', reason: '', items: ['پیتزا XL','نوشابه'], best: false, price: 165000 },
-      { name: 'ساندویچی محسن', dist: '۱ دقیقه', rate: '۴.۰', tag: '', reason: '', items: ['ساندویچ مخلوط','سیب‌زمینی'], best: false, price: 85000 }
+      { name: 'کباب‌سرای پدر', dist: '۲ دقیقه', rate: '۴.۶', tag: 'بهترین انتخاب', reason: 'سریع‌ترین + پرحجم‌ترین — دقیقاً بدردت می‌خوره', items: ['کباب کوبیده','جوجه','برنج زعفرانی'], best: true, price: 351000 },
+      { name: 'پیتزا اکسپرس', dist: '۳ دقیقه', rate: '۴.۲', tag: '', reason: '', items: ['پیتزا XL','نوشابه'], best: false, price: 276000 },
+      { name: 'ساندویچی محسن', dist: '۱ دقیقه', rate: '۴.۰', tag: '', reason: '', items: ['ساندویچ مخلوط','سیب‌زمینی'], best: false, price: 142000 }
     ],
     cart: [
-      { name: 'کباب کوبیده (دو سیخ)', from: 'کباب‌سرای پدر', price: 110000, qty: 1 },
-      { name: 'جوجه کباب', from: 'کباب‌سرای پدر', price: 95000, qty: 1 },
-      { name: 'برنج زعفرانی', from: 'کباب‌سرای پدر', price: 35000, qty: 1 }
+      { name: 'کباب کوبیده (دو سیخ)', from: 'کباب‌سرای پدر', price: 184000, qty: 1 },
+      { name: 'جوجه کباب', from: 'کباب‌سرای پدر', price: 159000, qty: 1 },
+      { name: 'برنج زعفرانی', from: 'کباب‌سرای پدر', price: 58000, qty: 1 }
     ]
   },
   'دلم چیز سبک می‌خواد': {
     ai: 'دنبال سبک و سالم هستی. رستوران‌های با گزینه‌های گیاهی و کم‌کالری نزدیکت.',
     cartNote: 'کم‌کالری، پرپروتئین، تازه',
     restaurants: [
-      { name: 'بول بار سبز', dist: '۵ دقیقه', rate: '۴.۷', tag: 'بهترین انتخاب', reason: 'باول‌های تازه — سالم‌ترین گزینه نزدیکت', items: ['باول کینوا','آب انار','سالاد یونانی'], best: true, price: 145000 },
-      { name: 'گیاهی نوین', dist: '۷ دقیقه', rate: '۴.۵', tag: '', reason: '', items: ['رول گیاهی','اسموتی سبز'], best: false, price: 110000 },
-      { name: 'ژوس‌بار', dist: '۳ دقیقه', rate: '۴.۳', tag: '', reason: '', items: ['آبمیوه تازه','ساندویچ سبک'], best: false, price: 75000 }
+      { name: 'بول بار سبز', dist: '۵ دقیقه', rate: '۴.۷', tag: 'بهترین انتخاب', reason: 'باول‌های تازه — سالم‌ترین گزینه نزدیکت', items: ['باول کینوا','آب انار','سالاد یونانی'], best: true, price: 242000 },
+      { name: 'گیاهی نوین', dist: '۷ دقیقه', rate: '۴.۵', tag: '', reason: '', items: ['رول گیاهی','اسموتی سبز'], best: false, price: 184000 },
+      { name: 'ژوس‌بار', dist: '۳ دقیقه', rate: '۴.۳', tag: '', reason: '', items: ['آبمیوه تازه','ساندویچ سبک'], best: false, price: 125000 }
     ],
     cart: [
-      { name: 'باول کینوا و آووکادو', from: 'بول بار سبز', price: 85000, qty: 1 },
-      { name: 'سالاد یونانی', from: 'بول بار سبز', price: 55000, qty: 1 },
-      { name: 'آب انار تازه', from: 'بول بار سبز', price: 40000, qty: 1 }
+      { name: 'باول کینوا و آووکادو', from: 'بول بار سبز', price: 142000, qty: 1 },
+      { name: 'سالاد یونانی', from: 'بول بار سبز', price: 92000, qty: 1 },
+      { name: 'آب انار تازه', from: 'بول بار سبز', price: 67000, qty: 1 }
     ]
   },
   'دلم آرامش می‌خواد': {
     ai: 'دنبال آرامشی. کافه‌های دنج با فضای خوب و نوشیدنی گرم پیدا کردم.',
     cartNote: 'فضای آروم + نوشیدنی گرم = بهترین ترکیب',
     restaurants: [
-      { name: 'کافه رویا', dist: '۴ دقیقه', rate: '۴.۸', tag: 'بهترین انتخاب', reason: 'فضای دنج + موسیقی آروم — دقیقاً همین می‌خوای', items: ['لاته','کیک هویج','کتاب رایگان'], best: true, price: 95000 },
-      { name: 'چایخانه سنتی', dist: '۸ دقیقه', rate: '۴.۶', tag: '', reason: '', items: ['چای نبات','باقلوا','قلیان'], best: false, price: 65000 },
-      { name: 'لانج مدرن', dist: '۶ دقیقه', rate: '۴.۴', tag: '', reason: '', items: ['موکتیل','ناچو','تاپاس'], best: false, price: 120000 }
+      { name: 'کافه رویا', dist: '۴ دقیقه', rate: '۴.۸', tag: 'بهترین انتخاب', reason: 'فضای دنج + موسیقی آروم — دقیقاً همین می‌خوای', items: ['لاته','کیک هویج','کتاب رایگان'], best: true, price: 159000 },
+      { name: 'چایخانه سنتی', dist: '۸ دقیقه', rate: '۴.۶', tag: '', reason: '', items: ['چای نبات','باقلوا','قلیان'], best: false, price: 109000 },
+      { name: 'لانج مدرن', dist: '۶ دقیقه', rate: '۴.۴', tag: '', reason: '', items: ['موکتیل','ناچو','تاپاس'], best: false, price: 200000 }
     ],
     cart: [
-      { name: 'لاته عسل', from: 'کافه رویا', price: 55000, qty: 1 },
-      { name: 'کیک هویج', from: 'کافه رویا', price: 48000, qty: 1 },
-      { name: 'دمنوش گل‌گاوزبان', from: 'کافه رویا', price: 32000, qty: 1 }
+      { name: 'لاته عسل', from: 'کافه رویا', price: 92000, qty: 1 },
+      { name: 'کیک هویج', from: 'کافه رویا', price: 80000, qty: 1 },
+      { name: 'دمنوش گل‌گاوزبان', from: 'کافه رویا', price: 53000, qty: 1 }
     ]
   }
 };
@@ -282,7 +281,7 @@ function renderRestaurants() {
       <div class="rest-meta">
         <span><i class="ti ti-map-pin" style="font-size:12px"></i> ${r.dist}</span>
         <span><i class="ti ti-star" style="font-size:12px"></i> ${r.rate}</span>
-        <span><i class="ti ti-coin" style="font-size:12px"></i> ${(r.price/1000).toFixed(0)}K</span>
+        <span><i class="ti ti-coin" style="font-size:12px"></i> ${(r.price/1000).toFixed(0)} هزار تومان</span>
       </div>
       ${r.reason ? `<div class="rest-reason"><i class="ti ti-sparkles" style="font-size:12px"></i> ${r.reason}</div>` : ''}
       <div class="rest-items">${r.items.map(i => `<span>${i}</span>`).join('')}</div>
@@ -309,7 +308,7 @@ function renderCart() {
           <span style="font-size:14px;min-width:16px;text-align:center">${item.qty}</span>
           <button class="qty-btn" onclick="changeQty(${i},-1)">−</button>
         </div>
-        <div class="cart-item-price">${(item.price * item.qty / 1000).toFixed(0)}K</div>
+        <div class="cart-item-price">${(item.price * item.qty / 1000).toFixed(0)} هزار تومان</div>
       </div>
       <div class="cart-item-info">
         <div class="name">${item.name}</div>
