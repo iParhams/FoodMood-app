@@ -1,0 +1,338 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.app { max-width: 390px; margin: 0 auto; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-xl); overflow: hidden; min-height: 700px; display: flex; flex-direction: column; font-family: 'Vazirmatn', sans-serif; direction: rtl; }
+.screen { display: none; flex-direction: column; flex: 1; }
+.screen.active { display: flex; }
+.status-bar { padding: 12px 20px 6px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--color-text-secondary); }
+.top-bar { padding: 8px 20px 12px; text-align: right; }
+.top-bar h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+.top-bar p { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+.content { padding: 0 16px; flex: 1; overflow-y: auto; }
+.bottom { padding: 16px; }
+.btn { width: 100%; padding: 14px; border-radius: var(--border-radius-lg); border: none; font-size: 15px; font-weight: 500; cursor: pointer; font-family: 'Vazirmatn', sans-serif; }
+.btn-primary { background: #1D9E75; color: #fff; }
+.btn-outline { background: transparent; border: 0.5px solid var(--color-border-secondary); color: var(--color-text-primary); }
+
+.mood-label { font-size: 13px; color: var(--color-text-secondary); padding: 0 4px; margin-bottom: 12px; text-align: right; }
+.mood-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.mood-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 12px; cursor: pointer; transition: border-color 0.15s; text-align: center; }
+.mood-card.selected { border: 2px solid #1D9E75; background: #E1F5EE; }
+.mood-card .icon { font-size: 26px; margin-bottom: 6px; }
+.mood-card .name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+.mood-card .desc { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+
+.thinking-box { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 16px; margin-bottom: 12px; text-align: right; }
+.thinking-box .ai-label { font-size: 11px; color: #0F6E56; font-weight: 500; letter-spacing: 0.03em; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; flex-direction: row-reverse; }
+.thinking-box p { font-size: 13px; color: var(--color-text-primary); line-height: 1.8; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: #1D9E75; display: inline-block; animation: pulse 1.2s infinite; }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes pulse { 0%,80%,100%{opacity:0.3} 40%{opacity:1} }
+
+.rest-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px; margin-bottom: 10px; cursor: pointer; text-align: right; }
+.rest-card.best { border: 2px solid #1D9E75; }
+.rest-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; flex-direction: row-reverse; }
+.rest-name { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.rest-badge { font-size: 10px; background: #E1F5EE; color: #0F6E56; padding: 3px 8px; border-radius: 20px; font-weight: 500; }
+.rest-meta { font-size: 12px; color: var(--color-text-secondary); display: flex; gap: 10px; flex-direction: row-reverse; }
+.rest-reason { font-size: 12px; color: #0F6E56; margin-top: 6px; background: #E1F5EE; padding: 6px 10px; border-radius: 6px; }
+.rest-items { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; justify-content: flex-end; }
+.rest-items span { font-size: 11px; background: var(--color-background-secondary); color: var(--color-text-secondary); padding: 3px 8px; border-radius: 20px; }
+
+.cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 0.5px solid var(--color-border-tertiary); flex-direction: row-reverse; }
+.cart-item-info { text-align: right; }
+.cart-item-info .name { font-size: 14px; color: var(--color-text-primary); }
+.cart-item-info .from { font-size: 12px; color: var(--color-text-secondary); }
+.cart-item-price { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+.cart-qty { display: flex; align-items: center; gap: 8px; }
+.qty-btn { width: 24px; height: 24px; border-radius: 50%; border: 0.5px solid var(--color-border-secondary); background: transparent; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; color: var(--color-text-primary); }
+.cart-total { display: flex; justify-content: space-between; padding: 14px 0 0; font-size: 15px; font-weight: 500; flex-direction: row-reverse; }
+.ai-note { background: #E1F5EE; border-radius: var(--border-radius-md); padding: 10px 12px; margin-bottom: 14px; font-size: 12px; color: #0F6E56; display: flex; gap: 8px; align-items: flex-start; flex-direction: row-reverse; text-align: right; }
+
+.nav { display: flex; justify-content: space-around; padding: 10px 0 14px; border-top: 0.5px solid var(--color-border-tertiary); }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; color: var(--color-text-secondary); font-size: 10px; font-family: 'Vazirmatn', sans-serif; }
+.nav-item.active { color: #1D9E75; }
+.nav-item i { font-size: 22px; }
+</style>
+
+<div class="app">
+
+  <div class="screen active" id="screen-mood">
+    <div class="status-bar"><span><i class="ti ti-battery" style="font-size:14px"></i> <i class="ti ti-wifi" style="font-size:14px"></i></span><span>۱۲:۴۵</span></div>
+    <div class="top-bar">
+      <h2>الان چه حالی داری؟</h2>
+      <p>بر اساس مودت بهترین غذا رو پیدا می‌کنم</p>
+    </div>
+    <div class="content">
+      <p class="mood-label">حال و هوای الان</p>
+      <div class="mood-grid">
+        <div class="mood-card" onclick="selectMood(this,'خسته و بی‌حال')">
+          <div class="icon">😴</div>
+          <div class="name">خسته</div>
+          <div class="desc">انرژی کم، آرامش می‌خوام</div>
+        </div>
+        <div class="mood-card" onclick="selectMood(this,'استرس زیاد')">
+          <div class="icon">😰</div>
+          <div class="name">استرس‌زده</div>
+          <div class="desc">دلم آرامش می‌خواد</div>
+        </div>
+        <div class="mood-card" onclick="selectMood(this,'شاد و پرانرژی')">
+          <div class="icon">🎉</div>
+          <div class="name">شاد</div>
+          <div class="desc">دنبال تجربه جدیدم</div>
+        </div>
+        <div class="mood-card" onclick="selectMood(this,'گرسنگی شدید')">
+          <div class="icon">🤤</div>
+          <div class="name">گرسنه</div>
+          <div class="desc">زیاد و سریع می‌خوام</div>
+        </div>
+        <div class="mood-card" onclick="selectMood(this,'دلم چیز سبک می‌خواد')">
+          <div class="icon">🥗</div>
+          <div class="name">سبک</div>
+          <div class="desc">سالم و سبک</div>
+        </div>
+        <div class="mood-card" onclick="selectMood(this,'دلم آرامش می‌خواد')">
+          <div class="icon">☕</div>
+          <div class="name">آروم</div>
+          <div class="desc">کافه‌ای و دنج</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <button class="btn btn-primary" id="mood-btn" onclick="goToAI()" disabled style="opacity:0.4">پیدا کن</button>
+    </div>
+  </div>
+
+  <div class="screen" id="screen-results">
+    <div class="status-bar"><span><i class="ti ti-battery" style="font-size:14px"></i> <i class="ti ti-wifi" style="font-size:14px"></i></span><span>۱۲:۴۵</span></div>
+    <div class="top-bar">
+      <h2>پیشنهاد هوشمند</h2>
+      <p id="mood-subtitle">برای مود شما</p>
+    </div>
+    <div class="content">
+      <div class="thinking-box">
+        <div class="ai-label"><span class="dot"></span><span class="dot"></span><span class="dot"></span>&nbsp;تحلیل هوش مصنوعی</div>
+        <p id="ai-text">در حال بررسی رستوران‌های نزدیک...</p>
+      </div>
+      <div id="restaurants"></div>
+    </div>
+    <div class="bottom">
+      <button class="btn btn-primary" id="to-cart-btn" onclick="goToCart()" style="opacity:0.4;pointer-events:none">پر کردن سبد خرید</button>
+    </div>
+    <div class="nav">
+      <div class="nav-item" onclick="goBack()"><i class="ti ti-arrow-right"></i><span>برگشت</span></div>
+      <div class="nav-item active"><i class="ti ti-building-store"></i><span>رستوران‌ها</span></div>
+      <div class="nav-item" onclick="goToCart()"><i class="ti ti-shopping-cart"></i><span>سبد</span></div>
+    </div>
+  </div>
+
+  <div class="screen" id="screen-cart">
+    <div class="status-bar"><span><i class="ti ti-battery" style="font-size:14px"></i> <i class="ti ti-wifi" style="font-size:14px"></i></span><span>۱۲:۴۷</span></div>
+    <div class="top-bar">
+      <h2>سبد خرید</h2>
+      <p>انتخاب‌های هوشمند برای مود شما</p>
+    </div>
+    <div class="content">
+      <div class="ai-note">
+        <i class="ti ti-sparkles" style="font-size:16px;flex-shrink:0;margin-top:1px"></i>
+        <span id="cart-ai-note">این انتخاب‌ها بر اساس مود شما چیده شده‌اند</span>
+      </div>
+      <div id="cart-items"></div>
+      <div class="cart-total">
+        <span id="total-price">۱۸۵٬۰۰۰ تومان</span>
+        <span>جمع کل</span>
+      </div>
+    </div>
+    <div class="bottom" style="display:flex;gap:8px">
+      <button class="btn btn-primary" onclick="sendPrompt('چطور ربات تلگرام حال‌منو رو با Claude API بسازم؟')">ثبت سفارش ↗</button>
+      <button class="btn btn-outline" style="width:44px;flex-shrink:0" onclick="goBack2()"><i class="ti ti-arrow-right"></i></button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const moods = {
+  'خسته و بی‌حال': {
+    ai: 'تشخیص دادم خسته هستی. رستوران‌هایی با غذای گرم و آرامش‌بخش، نزدیک به تو، پیدا کردم.',
+    cartNote: 'غذاهای گرم و آرامش‌بخش برای وقتی که خسته‌ای',
+    restaurants: [
+      { name: 'سوپ‌خانه ستاره', dist: '۳ دقیقه', rate: '۴.۷', tag: 'بهترین انتخاب', reason: 'سوپ گرم و آبگوشت — بهترین برای خستگی', items: ['سوپ جو','آبگوشت','دمنوش'], best: true, price: 120000 },
+      { name: 'کافه آرام', dist: '۷ دقیقه', rate: '۴.۴', tag: '', reason: '', items: ['کاپوچینو','ساندویچ سبک','کیک'], best: false, price: 85000 },
+      { name: 'خانه‌پلو', dist: '۱۰ دقیقه', rate: '۴.۲', tag: '', reason: '', items: ['قورمه سبزی','ماست موسیر'], best: false, price: 95000 }
+    ],
+    cart: [
+      { name: 'سوپ جو', from: 'سوپ‌خانه ستاره', price: 55000, qty: 1 },
+      { name: 'دمنوش آرامش', from: 'سوپ‌خانه ستاره', price: 35000, qty: 1 },
+      { name: 'نان تازه', from: 'سوپ‌خانه ستاره', price: 15000, qty: 2 }
+    ]
+  },
+  'استرس زیاد': {
+    ai: 'استرس داری — غذاهایی که سروتونین بالا می‌برن و فضای آروم رو پیدا کردم.',
+    cartNote: 'ترکیب شکلات تلخ + کربوهیدرات برای کاهش استرس',
+    restaurants: [
+      { name: 'کافه مدیتیشن', dist: '۵ دقیقه', rate: '۴.۸', tag: 'بهترین انتخاب', reason: 'فضای آروم + شکلات داغ — ضد استرس', items: ['شکلات داغ','براونی','سالاد'], best: true, price: 110000 },
+      { name: 'پاستا رستو', dist: '۸ دقیقه', rate: '۴.۳', tag: '', reason: '', items: ['پاستا کاربونارا','تیراموسو'], best: false, price: 130000 },
+      { name: 'گیاهی سبز', dist: '۶ دقیقه', rate: '۴.۵', tag: '', reason: '', items: ['باولی آووکادو','آب انار'], best: false, price: 95000 }
+    ],
+    cart: [
+      { name: 'شکلات داغ', from: 'کافه مدیتیشن', price: 45000, qty: 1 },
+      { name: 'براونی', from: 'کافه مدیتیشن', price: 38000, qty: 1 },
+      { name: 'سالاد سزار', from: 'کافه مدیتیشن', price: 65000, qty: 1 }
+    ]
+  },
+  'شاد و پرانرژی': {
+    ai: 'انرژیت بالاست! رستوران‌های باکیفیت و غذای جدید و هیجان‌انگیز پیدا کردم.',
+    cartNote: 'غذاهای ماجراجویانه برای یه مود عالی',
+    restaurants: [
+      { name: 'فیوژن تهران', dist: '۶ دقیقه', rate: '۴.۹', tag: 'بهترین انتخاب', reason: 'منوی خلاقانه — ایده‌آل وقتی خوشحالی', items: ['رول کره‌ای','پیتزا فیوژن','اسموتی'], best: true, price: 180000 },
+      { name: 'برگر آرتیزان', dist: '۴ دقیقه', rate: '۴.۶', tag: '', reason: '', items: ['برگر ترافل','سیب‌زمینی'], best: false, price: 145000 },
+      { name: 'سوشی بار', dist: '۱۲ دقیقه', rate: '۴.۵', tag: '', reason: '', items: ['رول ساکورا','میسو'], best: false, price: 210000 }
+    ],
+    cart: [
+      { name: 'رول کره‌ای اسپایسی', from: 'فیوژن تهران', price: 95000, qty: 1 },
+      { name: 'اسموتی انبه', from: 'فیوژن تهران', price: 55000, qty: 1 },
+      { name: 'دسر شکلاتی', from: 'فیوژن تهران', price: 48000, qty: 1 }
+    ]
+  },
+  'گرسنگی شدید': {
+    ai: 'گرسنگی شدید تشخیص داده شد! سریع‌ترین رستوران‌ها با بیشترین حجم غذا.',
+    cartNote: 'پرحجم‌ترین انتخاب‌ها — سریع‌ترین تحویل',
+    restaurants: [
+      { name: 'کباب‌سرای پدر', dist: '۲ دقیقه', rate: '۴.۶', tag: 'بهترین انتخاب', reason: 'سریع‌ترین + پرحجم‌ترین — دقیقاً بدردت می‌خوره', items: ['کباب کوبیده','جوجه','برنج زعفرانی'], best: true, price: 210000 },
+      { name: 'پیتزا اکسپرس', dist: '۳ دقیقه', rate: '۴.۲', tag: '', reason: '', items: ['پیتزا XL','نوشابه'], best: false, price: 165000 },
+      { name: 'ساندویچی محسن', dist: '۱ دقیقه', rate: '۴.۰', tag: '', reason: '', items: ['ساندویچ مخلوط','سیب‌زمینی'], best: false, price: 85000 }
+    ],
+    cart: [
+      { name: 'کباب کوبیده (دو سیخ)', from: 'کباب‌سرای پدر', price: 110000, qty: 1 },
+      { name: 'جوجه کباب', from: 'کباب‌سرای پدر', price: 95000, qty: 1 },
+      { name: 'برنج زعفرانی', from: 'کباب‌سرای پدر', price: 35000, qty: 1 }
+    ]
+  },
+  'دلم چیز سبک می‌خواد': {
+    ai: 'دنبال سبک و سالم هستی. رستوران‌های با گزینه‌های گیاهی و کم‌کالری نزدیکت.',
+    cartNote: 'کم‌کالری، پرپروتئین، تازه',
+    restaurants: [
+      { name: 'بول بار سبز', dist: '۵ دقیقه', rate: '۴.۷', tag: 'بهترین انتخاب', reason: 'باول‌های تازه — سالم‌ترین گزینه نزدیکت', items: ['باول کینوا','آب انار','سالاد یونانی'], best: true, price: 145000 },
+      { name: 'گیاهی نوین', dist: '۷ دقیقه', rate: '۴.۵', tag: '', reason: '', items: ['رول گیاهی','اسموتی سبز'], best: false, price: 110000 },
+      { name: 'ژوس‌بار', dist: '۳ دقیقه', rate: '۴.۳', tag: '', reason: '', items: ['آبمیوه تازه','ساندویچ سبک'], best: false, price: 75000 }
+    ],
+    cart: [
+      { name: 'باول کینوا و آووکادو', from: 'بول بار سبز', price: 85000, qty: 1 },
+      { name: 'سالاد یونانی', from: 'بول بار سبز', price: 55000, qty: 1 },
+      { name: 'آب انار تازه', from: 'بول بار سبز', price: 40000, qty: 1 }
+    ]
+  },
+  'دلم آرامش می‌خواد': {
+    ai: 'دنبال آرامشی. کافه‌های دنج با فضای خوب و نوشیدنی گرم پیدا کردم.',
+    cartNote: 'فضای آروم + نوشیدنی گرم = بهترین ترکیب',
+    restaurants: [
+      { name: 'کافه رویا', dist: '۴ دقیقه', rate: '۴.۸', tag: 'بهترین انتخاب', reason: 'فضای دنج + موسیقی آروم — دقیقاً همین می‌خوای', items: ['لاته','کیک هویج','کتاب رایگان'], best: true, price: 95000 },
+      { name: 'چایخانه سنتی', dist: '۸ دقیقه', rate: '۴.۶', tag: '', reason: '', items: ['چای نبات','باقلوا','قلیان'], best: false, price: 65000 },
+      { name: 'لانج مدرن', dist: '۶ دقیقه', rate: '۴.۴', tag: '', reason: '', items: ['موکتیل','ناچو','تاپاس'], best: false, price: 120000 }
+    ],
+    cart: [
+      { name: 'لاته عسل', from: 'کافه رویا', price: 55000, qty: 1 },
+      { name: 'کیک هویج', from: 'کافه رویا', price: 48000, qty: 1 },
+      { name: 'دمنوش گل‌گاوزبان', from: 'کافه رویا', price: 32000, qty: 1 }
+    ]
+  }
+};
+
+let selectedMood = '', selectedData = null, cartData = [];
+
+function selectMood(el, mood) {
+  document.querySelectorAll('.mood-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedMood = mood;
+  const btn = document.getElementById('mood-btn');
+  btn.disabled = false; btn.style.opacity = '1';
+}
+
+function goToAI() {
+  selectedData = moods[selectedMood];
+  document.getElementById('screen-mood').classList.remove('active');
+  document.getElementById('screen-results').classList.add('active');
+  document.getElementById('mood-subtitle').textContent = 'مود: ' + selectedMood;
+  const aiEl = document.getElementById('ai-text');
+  aiEl.textContent = 'در حال بررسی رستوران‌های نزدیک...';
+  document.getElementById('restaurants').innerHTML = '';
+  document.getElementById('to-cart-btn').style.opacity = '0.4';
+  document.getElementById('to-cart-btn').style.pointerEvents = 'none';
+  setTimeout(() => {
+    aiEl.textContent = selectedData.ai;
+    setTimeout(() => {
+      renderRestaurants();
+      document.getElementById('to-cart-btn').style.opacity = '1';
+      document.getElementById('to-cart-btn').style.pointerEvents = 'auto';
+    }, 600);
+  }, 1200);
+}
+
+function renderRestaurants() {
+  const container = document.getElementById('restaurants');
+  container.innerHTML = selectedData.restaurants.map(r => `
+    <div class="rest-card ${r.best ? 'best' : ''}">
+      <div class="rest-top">
+        <div class="rest-name">${r.name}</div>
+        ${r.tag ? `<span class="rest-badge">${r.tag}</span>` : ''}
+      </div>
+      <div class="rest-meta">
+        <span><i class="ti ti-map-pin" style="font-size:12px"></i> ${r.dist}</span>
+        <span><i class="ti ti-star" style="font-size:12px"></i> ${r.rate}</span>
+        <span><i class="ti ti-coin" style="font-size:12px"></i> ${(r.price/1000).toFixed(0)}K</span>
+      </div>
+      ${r.reason ? `<div class="rest-reason"><i class="ti ti-sparkles" style="font-size:12px"></i> ${r.reason}</div>` : ''}
+      <div class="rest-items">${r.items.map(i => `<span>${i}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+function goToCart() {
+  if (!selectedData) return;
+  cartData = selectedData.cart.map(i => ({...i}));
+  document.getElementById('screen-results').classList.remove('active');
+  document.getElementById('screen-cart').classList.add('active');
+  document.getElementById('cart-ai-note').textContent = selectedData.cartNote;
+  renderCart();
+}
+
+function renderCart() {
+  const container = document.getElementById('cart-items');
+  container.innerHTML = cartData.map((item, i) => `
+    <div class="cart-item">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="cart-qty">
+          <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
+          <span style="font-size:14px;min-width:16px;text-align:center">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${i},-1)">−</button>
+        </div>
+        <div class="cart-item-price">${(item.price * item.qty / 1000).toFixed(0)}K</div>
+      </div>
+      <div class="cart-item-info">
+        <div class="name">${item.name}</div>
+        <div class="from">${item.from}</div>
+      </div>
+    </div>
+  `).join('');
+  const total = cartData.reduce((s,i) => s + i.price * i.qty, 0);
+  document.getElementById('total-price').textContent = total.toLocaleString('fa-IR') + ' تومان';
+}
+
+function changeQty(i, delta) {
+  cartData[i].qty = Math.max(0, cartData[i].qty + delta);
+  if (cartData[i].qty === 0) cartData.splice(i, 1);
+  renderCart();
+}
+
+function goBack() {
+  document.getElementById('screen-results').classList.remove('active');
+  document.getElementById('screen-mood').classList.add('active');
+}
+function goBack2() {
+  document.getElementById('screen-cart').classList.remove('active');
+  document.getElementById('screen-results').classList.add('active');
+}
+</script>
